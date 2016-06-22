@@ -1,13 +1,13 @@
 // We will have 20 blocks. blocks[i]==1 means it still exists
-int[] blocks = new int[20];
+int[] blocks = new int[40];
 // Variables to keep track of position and speed of ball
-int x = 250 + int(random(-80,80));
+int x=250 + int(random(-80,80));
 int y = 350;
-int x_speed = 3;
-int y_speed = -3;
+int x_speed = 10;
+int y_speed = 10;
 // Variables to keep track of paddle
-int x_paddle = 250, y_paddle = 370;
-int paddle_width_half = 40;
+int x_paddle = 250, y_paddle = 375;
+int paddle_width_half = 300;
 // keep score 
 int score = 0;
 int level = 1;
@@ -72,9 +72,9 @@ void draw() {
   }
 
   // Clear screen to black
-  background(0);
+  background(255,0,100);
   // Set fill color to white
-  fill(255);
+  fill(0,0,255);
   // Display score
   textSize(16);
   textAlign(RIGHT);
@@ -88,11 +88,11 @@ void draw() {
   text(level, 460, 390);
 
   // Draw a circle at position x,y, 10 pixels large
-  ellipse(x, y, 10, 10);
+  ellipse(x, y, 30, 30);
   // draw paddle
   rect(x_paddle, y_paddle, paddle_width_half*2+1, 11);
   if (y>height) {
-    textSize(40);
+    textSize(70);
     textAlign(CENTER);
     text("Game over", 250, 250);
   }
@@ -106,7 +106,7 @@ void draw() {
     // Check if we we have a block (blocks[x] is 1)
     if (blocks[i]==1) { 
       // Draw the block
-      rect(x_tmp+40, y_tmp+10, 80, 20);
+      rect(x_tmp+40, y_tmp+10, 80, 15);
       // Since we drew a block, all are not gone
       blocks_gone = 0;
     }
