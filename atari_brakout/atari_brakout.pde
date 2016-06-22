@@ -1,12 +1,17 @@
+import processing.sound.*;
+SoundFile file;
+
+
+
 // We will have 20 blocks. blocks[i]==1 means it still exists
 int[] blocks = new int[40];
 // Variables to keep track of position and speed of ball
 int x=250 + int(random(-80,80));
 int y = 350;
-int x_speed = 10;
-int y_speed = 10;
+int x_speed = 0;
+int y_speed = 0;
 // Variables to keep track of paddle
-int x_paddle = 250, y_paddle = 375;
+int x_paddle = 250, y_paddle = 370;
 int paddle_width_half = 300;
 // keep score 
 int score = 0;
@@ -15,6 +20,11 @@ int wait = 0;
 
 // Run once at start
 void setup() {
+  
+  //load a sound file from the /data folder of the scetch and play it back
+  file = new SoundFile(this, "Nyan Cat.mp3");
+  file.play();
+  
   int i;
   // 500 pixels wide, 400 pixel height
   // This call will set system variables (width, height)
@@ -51,8 +61,8 @@ void draw() {
       // Restart
       x = 250 + int(random(-80,80));
       y = 350;
-      x_speed = 3;
-      y_speed = -3;
+      x_speed = 6;
+      y_speed = -6;
       x_paddle = 250;
       score = 0;
       level = 1;
@@ -72,7 +82,7 @@ void draw() {
   }
 
   // Clear screen to black
-  background(255,0,100);
+  background(0,255,0);
   // Set fill color to white
   fill(0,0,255);
   // Display score
