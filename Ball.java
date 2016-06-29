@@ -1,4 +1,4 @@
-package Shapes;
+package BreakOut;
 
 
 
@@ -7,7 +7,7 @@ import processing.core.PApplet;
 
 
 
-public class Balls {
+public class Ball {
 	PApplet p;
 	float x;
 	float y;
@@ -16,14 +16,14 @@ public class Balls {
 	float size;
 	Color color;
 	
-	public Balls(PApplet np,float nx,float ny, float nsize,Color c){
+	public Ball(PApplet np,float nx,float ny, float nsize,Color c){
 		x = nx;
 		y = ny;
 		size = nsize;
 		color = c;
 		p = np;
-		vX = p.random(-3,3);
-		vY = p.random(-3,3);
+		vX = 3;
+		vY = 3;
 	   }
 	public void update(){
 		x = x + vX;
@@ -42,5 +42,31 @@ public void paint(){
 	p.fill(color.getRed(),color.getGreen(),color.getBlue());
     p.ellipse(x, y, size, size);
     }
+public float getX(){
+	return x;
+}
+public float getY(){
+	return y;
+}
+public void setX(float tempx){
+	x = tempx;
+}
+public void setY(float tempy){
+	y = tempy;
+}
+public float getSize(){
+	return size;
+}
+public float getvX(){
+	return vX;
+}
+public float getvY(){
+	return vY;
+}
+public void setVelocity(float tempvX, float tempvY){
+	vX = tempvX;
+	vY = tempvY	;	
+}
+
 
 }

@@ -69,7 +69,7 @@ public class Breakout extends PApplet {
 	
 	
 	public void draw() {
-	 fill(0,0,255,15);
+	 fill(0,0,255);
 	 rect(0,0,width,height);
 		
 		paddle.paint();
@@ -80,5 +80,11 @@ public class Breakout extends PApplet {
 		updateGame();
 		text("level1",360,580);
 		text("score",20,580);
+		if (keyPressed == true && key == ' '){
+			ball.setX(width/2);
+			ball.setY(height/2);
+			ball.setVelocity(3,3);
+			addBricks();
+		}
 	}
 }
