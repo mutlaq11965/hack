@@ -41,16 +41,44 @@ public class Breakout extends PApplet {
 		for(int i = 0; i <bricks.size(); i++){
 			bricks.get(i).paint();
 		}
+		
+	}
+	public void updateGame(){
+		if(ball.getX()>paddle.getX()
+				&& ball.getX() < (paddle.getX()+60) && ball.getY()+ball.getSize()/2 > paddle.getY()){
+			ball.setVelocity(ball.getvX(), -ball.getvY());
+			
+		}
+		if(ball.getY()>height - 40){
+			background(0);
+			text("loser",width/2,height/2);
+
+			ball.setVelocity(0, 0);
+		}
+		for(int i = 0; i< bricks.size(); i++){
+			Rectangle b = bricks.get(i);
+			
+			if(ball.getX() + (ball.getSize()/2) > b.getX() 
+			&&(ball.getX()+ (ball.getSize()/2)) < b.getX() + b.getWidth() 
+			&& ball.getY() < (b.getY()+b.getHeight())){
+				ball.setVelocity(ball.getvX(), -ball.getvY());
+				bricks.remove(b);
+			}
+		}
 	}
 	
 	
 	public void draw() {
-	 fill(0,0,0,15);
+	 fill(0,0,255,15);
 	 rect(0,0,width,height);
-		ball.update();
-		ball.paint();
+		
 		paddle.paint();
 		Updatepaddle();
+		ball.update();
+		ball.paint();
 		drawBricks();
+		updateGame();
+		text("level1",360,580);
+		text("score",20,580);
 	}
 }
