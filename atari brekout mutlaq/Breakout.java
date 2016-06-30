@@ -8,6 +8,8 @@ public class Breakout extends PApplet {
 	Rectangle paddle;
 	Ball ball;
 	int score;
+	int level = 1;
+	int i=2;
 	public ArrayList<Rectangle> bricks = new ArrayList<Rectangle>();
 
 	public static void main(String[] args) {
@@ -41,8 +43,8 @@ public class Breakout extends PApplet {
 
 		}
 	private void addBricks(){
-		for (int i=0;i<10;i++){
-			for(int j =0;j<10;j++){
+		for (int i=0;i<1;i++){
+			for(int j =0;j<1;j++){
 				bricks.add(new Rectangle(this,40*i,100+15*j,35,10));
 			}
 		}	
@@ -68,8 +70,15 @@ public class Breakout extends PApplet {
 		if(bricks.size()==0){
 			background(0);
 			text("winner",width/2,height/2);
-
 			ball.setVelocity(0, 0);
+			if(mousePressed == true){
+				i++;
+				level++;
+				ball.setX(width/2);
+				ball.setY(height/2);
+				ball.setVelocity(2+i,2+i);
+				addBricks();
+			}
 	
 		}
 		for(int i = 0; i< bricks.size(); i++){
@@ -96,13 +105,14 @@ public class Breakout extends PApplet {
 		ball.paint();
 		drawBricks();
 		updateGame();
-		text("level1",360,580);
+		text("level " + level,360,580);
 		text("score " + score,20,580);
 		if (keyPressed == true && key == ' '){
 			ball.setX(width/2);
 			ball.setY(height/2);
 			ball.setVelocity(3,3);
 			addBricks();
+			level = 1;
 		}
 	}
 }
