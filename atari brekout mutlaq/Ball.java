@@ -48,6 +48,12 @@ public float getX(){
 public float getY(){
 	return y;
 }
+public void setX(float tempx){
+	x = tempx;
+}
+public void setY(float tempy){
+	y = tempy;
+}
 public float getSize(){
 	return size;
 }

@@ -1,13 +1,17 @@
 package BreakOut;
 import java.awt.Color;
 import java.util.ArrayList;
-
+//import ddf.minim.*;
 import processing.core.PApplet;
+//import processing.sound.*;
 
 public class Breakout extends PApplet {
 	Rectangle paddle;
 	Ball ball;
+	int score;
 	public ArrayList<Rectangle> bricks = new ArrayList<Rectangle>();
+	//	Minim minim;
+	//	AudioPlayer song;
 
 	public static void main(String[] args) {
 		PApplet.main("BreakOut.Breakout");
@@ -23,6 +27,11 @@ public class Breakout extends PApplet {
 		background(0);
 		ball = new Ball(this,width/2,height/2,20,Color.RED);
 		addBricks();
+		//minim = new Minim(this);
+		//song = minim.loadFile("Nyan Cat.mp3");
+		//song.play();
+		//SoundFile file = new SoundFile(this, "Nyan Cat.mp3");
+		//file.play();
 	}
 	
 	private void Updatepaddle(){
@@ -47,12 +56,20 @@ public class Breakout extends PApplet {
 		if(ball.getX()>paddle.getX()
 				&& ball.getX() < (paddle.getX()+60) && ball.getY()+ball.getSize()/2 > paddle.getY()){
 			ball.setVelocity(ball.getvX(), -ball.getvY());
-
+			
 		}
 		if(ball.getY()>height - 40){
 			background(0);
 			text("loser",width/2,height/2);
+
 			ball.setVelocity(0, 0);
+		}
+		if(bricks.size()==0){
+			background(0);
+			text("winner",width/2,height/2);
+
+			ball.setVelocity(0, 0);
+	
 		}
 		for(int i = 0; i< bricks.size(); i++){
 			Rectangle b = bricks.get(i);
@@ -62,13 +79,14 @@ public class Breakout extends PApplet {
 			&& ball.getY() < (b.getY()+b.getHeight())){
 				ball.setVelocity(ball.getvX(), -ball.getvY());
 				bricks.remove(b);
+				score++;
 			}
 		}
 	}
 	
-	
+
 	public void draw() {
-	 fill(0,0,0,15);
+	 fill(0,0,255);
 	 rect(0,0,width,height);
 		
 		paddle.paint();
@@ -77,5 +95,13 @@ public class Breakout extends PApplet {
 		ball.paint();
 		drawBricks();
 		updateGame();
+		text("level1",360,580);
+		text("score " + score,20,580);
+		if (keyPressed == true && key == ' '){
+			ball.setX(width/2);
+			ball.setY(height/2);
+			ball.setVelocity(3,3);
+			addBricks();
+		}
 	}
 }
