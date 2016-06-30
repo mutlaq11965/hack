@@ -1,17 +1,14 @@
 package BreakOut;
 import java.awt.Color;
 import java.util.ArrayList;
-//import ddf.minim.*;
 import processing.core.PApplet;
-//import processing.sound.*;
-
+import java.io.*;
+import sun.audio.*;
 public class Breakout extends PApplet {
 	Rectangle paddle;
 	Ball ball;
 	int score;
 	public ArrayList<Rectangle> bricks = new ArrayList<Rectangle>();
-	//	Minim minim;
-	//	AudioPlayer song;
 
 	public static void main(String[] args) {
 		PApplet.main("BreakOut.Breakout");
@@ -27,11 +24,15 @@ public class Breakout extends PApplet {
 		background(0);
 		ball = new Ball(this,width/2,height/2,20,Color.RED);
 		addBricks();
-		//minim = new Minim(this);
-		//song = minim.loadFile("Nyan Cat.mp3");
-		//song.play();
-		//SoundFile file = new SoundFile(this, "Nyan Cat.mp3");
-		//file.play();
+		try{
+			String nyanCat = "/Users/Student/desktop/Nyan Cat.mp3";
+			InputStream in = new FileInputStream(nyanCat);
+			AudioStream audioStream = new AudioStream(in);
+			AudioPlayer.player.start(audioStream);
+		}
+		catch(Exception e) {};
+		
+		
 	}
 	
 	private void Updatepaddle(){
