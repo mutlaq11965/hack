@@ -10,6 +10,7 @@ public class Breakout extends PApplet {
 	int score;
 	int level = 1;
 	int i=2;
+	float timer;
 	public ArrayList<Rectangle> bricks = new ArrayList<Rectangle>();
 
 	public static void main(String[] args) {
@@ -43,8 +44,8 @@ public class Breakout extends PApplet {
 
 		}
 	private void addBricks(){
-		for (int i=0;i<1;i++){
-			for(int j =0;j<1;j++){
+		for (int i=0;i<10;i++){
+			for(int j =0;j<10;j++){
 				bricks.add(new Rectangle(this,40*i,100+15*j,35,10));
 			}
 		}	
@@ -113,6 +114,7 @@ public class Breakout extends PApplet {
 			ball.setVelocity(3,3);
 			addBricks();
 			level = 1;
+			score=0;
 		}
 	}
 }
